@@ -16,7 +16,7 @@ Dependency:
     jQuery
 
 API:
-    $$.scroll.set(target, pos, func, direction)
+    $$.scroll.set(target, pos, func[, reference[, direction]])
 
     $$.scroll.clear(key)
 
@@ -41,26 +41,41 @@ $(function () {
                 UP: 1,
                 DOWN: 2,
                 BOTH: 3
+            },
+            REFERENCE: {
+                TOP: 1,
+                BOTTOM: 2
             }
         };
 
         // set a task
-        var set = function (target, pos, func, direction) {
+        var set = function (target, pos, func, reference, direction) {
+            // set default opts
+            if (reference == null) reference = _data.REFERENCE.TOP;
             if (direction == null) direction = _data.DIRECTION.BOTH;
 
-            var idx2 = 0;
-            var list = null;
+            // push options into list
             task[key] = {
                 target: target,
                 pos: pos,
                 func: func,
+                reference: reference,
                 direction: direction,
                 last: target.getBoundingClientRect().top
             };
             _count++;
 
+            // trigger the task if it fits the condition already
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            if ((direction & _data.DIRECTION.DOWN) != 0 &&
+                ((reference == _data.REFERENCE.TOP && target.getBoundingClientRect().top < pos)
+                  || (reference == _data.REFERENCE.BOTTOM && windowHeight-target.getBoundingClientRect().top > pos))) {
+                func();
+            }
+
+            // bind scroll handler for  1st time
             if (!_setuped) {
-                window.onscroll = bindFunction;
+                window.onscroll = scrollHandler;
                 _setuped = true;
             }
             return key++;
@@ -78,25 +93,28 @@ $(function () {
         };
 
         // bind function to scroll
-        var bindFunction = function () {
+        var scrollHandler = function () {
             if (_count <= 0) return false;
+
             var currentPos = -document.body.getBoundingClientRect().top;
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
             if (currentPos == _lastPos) return;
             
             var _DOWN = _data.DIRECTION.DOWN;
             var _UP = _data.DIRECTION.UP;
+            var _TOP = _data.REFERENCE.TOP;
             for (var i = 0, l = task.length; i < l; i++) {
                 var t = task[i];
                 if (t == null) continue;
                 var last = t.target.getBoundingClientRect().top;
+                var pos = _TOP == t.reference ? t.pos : windowHeight - t.pos;
                 if (currentPos > _lastPos) {
                     // Scroll down
-                    if ((t.direction & _DOWN) != 0 &&(t.last > t.pos && t.pos >= last)) t.func();
+                    if ((t.direction & _DOWN) != 0 && (t.last > pos && pos >= last)) t.func();
                 } else {
                     // Scroll Up
-                    if ((t.direction & _UP) != 0 && (t.last < t.pos && t.pos <= last)) t.func();
+                    if ((t.direction & _UP) != 0 && (t.last < pos && pos <= last)) t.func();
                 }
-                console.log(t.last, t.pos, last);
                 t.last = last;
             }
 
@@ -109,7 +127,10 @@ $(function () {
 
             window.$$ = window.$$ || {};
             window.$$.scroll = {};
-            window.$$.scroll.DIRECTION = _data.DIRECTION;
+            for (var i in _data) {
+                if (!_data.hasOwnProperty(i)) continue;
+                window.$$.scroll[i] = _data[i];
+            }
             window.$$.scroll.set = set;
             window.$$.scroll.clear = clear;
         };
