@@ -1,7 +1,8 @@
 {
   "name": "scroll-task",
-  "description": "",
+  "description": "Monitor scrolling action and run pre-defined task when scroll to specific position.",
   "main": [
+    "js/ScrollTask.js"
   ],
   "dependencies": {
   },
@@ -9,8 +10,13 @@
     "globals"
   ],
   "keywords": [
+    "scroll",
+    "scrolling",
+    "scroll task",
+    "monitor"
   ],
   "authors": [
+    "Dongxu Ren <rendxx@gmail.com> http://www.rendxx.com"
   ],
   "license": "MIT",
   "ignore": [
@@ -19,7 +25,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git://github.com/Rendxx/ScrollTask.git"
   },
   "private": false
 }
