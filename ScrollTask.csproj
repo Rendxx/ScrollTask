@@ -23,7 +23,6 @@
     <Content Include="test\sample.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\" />
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +30,8 @@
     <None Include="bundle.json" />
     <Content Include="js\ScrollTask.js.map" />
     <Content Include="js\ScrollTask.min.js.map" />
+    <Content Include="LICENSE" />
+    <Content Include="README.md" />
     <None Include="test\sample.less" />
     <None Include="package.json" />
   </ItemGroup>
