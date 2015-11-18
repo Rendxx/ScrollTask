@@ -3,8 +3,8 @@ Scroll Task
 Copyright (c) 2014-2015 Dongxu Ren  http://www.rendxx.com/
 
 License: MIT (http://www.opensource.org/licenses/mit-license.php)
-Version: 0.0.1
-Update: 2015-11-10
+Version: 0.0.2
+Update: 2015-11-18
 
 Description:
     Monitor scrolling action and run pre-defined task when scroll to specific position on screen.
@@ -16,7 +16,7 @@ Dependency:
     jQuery
 
 API:
-    $$.scroll.set(target, pos, func[, reference[, direction]])
+    $$.scroll.set(target, offset, func[, reference[, direction]])
 
     $$.scroll.clear(key)
 
@@ -49,28 +49,35 @@ $(function () {
         };
 
         // set a task
-        var set = function (target, pos, func, reference, direction) {
+        var set = function (target, offset, func, reference, direction) {
             // set default opts
             if (reference == null) reference = _data.REFERENCE.TOP;
             if (direction == null) direction = _data.DIRECTION.BOTH;
 
             // push options into list
             task[key] = {
-                target: target,
-                pos: pos,
                 func: func,
+                target: target,
+                offset: offset,
                 reference: reference,
                 direction: direction,
-                last: target.getBoundingClientRect().top
+                last: target.getBoundingClientRect().top,
+                para: {
+                    target: target,
+                    offset: offset,
+                    reference: reference,
+                    direction: direction,
+                    key:key
+                }
             };
             _count++;
 
             // trigger the task if it fits the condition already
             var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
             if ((direction & _data.DIRECTION.DOWN) != 0 &&
-                ((reference == _data.REFERENCE.TOP && target.getBoundingClientRect().top < pos)
-                  || (reference == _data.REFERENCE.BOTTOM && windowHeight-target.getBoundingClientRect().top > pos))) {
-                func();
+                ((reference == _data.REFERENCE.TOP && target.getBoundingClientRect().top < offset)
+                  || (reference == _data.REFERENCE.BOTTOM && windowHeight-target.getBoundingClientRect().top > offset))) {
+                func(task[key].para);
             }
 
             // bind scroll handler for  1st time
@@ -107,13 +114,13 @@ $(function () {
                 var t = task[i];
                 if (t == null) continue;
                 var last = t.target.getBoundingClientRect().top;
-                var pos = _TOP == t.reference ? t.pos : windowHeight - t.pos;
+                var offset = _TOP == t.reference ? t.offset : windowHeight - t.offset;
                 if (currentPos > _lastPos) {
                     // Scroll down
-                    if ((t.direction & _DOWN) != 0 && (t.last > pos && pos >= last)) t.func();
+                    if ((t.direction & _DOWN) != 0 && (t.last > offset && offset >= last)) t.func(t.para);
                 } else {
                     // Scroll Up
-                    if ((t.direction & _UP) != 0 && (t.last < pos && pos <= last)) t.func();
+                    if ((t.direction & _UP) != 0 && (t.last < offset && offset <= last)) t.func(t.para);
                 }
                 t.last = last;
             }
