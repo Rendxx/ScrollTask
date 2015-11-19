@@ -9,6 +9,34 @@
         padding: 0;
         width: 100%;
         height: auto;
+        position: relative;
+        top: 0;
+        left: 0;
+
+
+        .instruction {
+            height: 50px;
+            line-height: 50px;
+            width: 400px;
+            position: absolute;
+            left: 50%;
+            margin-left: -200px;
+            color: #aaa;
+            font-size: 16px;
+            text-align: center;
+            z-index: 20;
+
+            &.instruction-1 {
+                top: 100px;
+                border-top: 1px dashed #bbb;
+            }
+
+            &.instruction-2 {
+                top: 700px;
+                margin-top: -51px;
+                border-bottom: 1px dashed #bbb;
+            }
+        }
 
         .content {
             border-bottom: 1px solid #eee;
@@ -18,13 +46,29 @@
             position: relative;
             top: 0;
             left: 0;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABEklEQVRoge2ZwQ6DIAyGgSz6AkuM953YxbfY42N26Gl3s2QvgEGzK4cJxs46un43mkr5Q/glVKkMANDmclL0fX/DfJ+rbzCT/wK8BQBA671vqBazpT7vHSiBpABr7VDX9ZNqMVvqn+JBbFnW2uEb8XEcUfN77xsAWMzX8SA+MLFyTFxr3VRVdd9r/iQA0DrnulXJC2B+ZGvq8z7EJVC8C/HegRKQu9DR8BYgLkQAbwHiQgQUL0Bj321yGGMu8zw/9qyRRB62dkZc6Gh4C5C7EAG8BYgLEcBbgLgQAcULSPYH4vf5OL6U/ymO6Q8457oQwnlzf+CThVH2B0IIV6WUmqbp9Z/9AXEhAngLkLsQAcULeANxPile0TMhiAAAAABJRU5ErkJggg==");
+            background-repeat: repeat;
             z-index: 10;
+        }
+
+        .indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 100px;
+            margin-top: -51px;
+            margin-left: -200px;
+            background-color:#fff;
+            z-index: 30;
+            border-top:1px solid #eee;
+            border-bottom:1px solid #eee;
 
             .tag {
                 display: block;
                 width: 98px;
-                height: 60px;
-                line-height: 60px;
+                height: 40px;
+                line-height: 40px;
                 color: #eee;
                 font-family: Calibri;
                 font-size: 16px;
@@ -33,7 +77,7 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                margin-top: -40px;
+                margin-top: -20px;
                 margin-left: -50px;
                 border-radius: 3px;
                 text-align: center;
@@ -51,7 +95,7 @@
                 }
 
                 &.hide {
-                    background-color: #eee;
+                    background-color: #fff;
                     border: 1px solid #ccc;
                     color: #ccc;
                 }

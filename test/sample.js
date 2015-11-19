@@ -4,17 +4,18 @@
     var tag3 = document.getElementById('tag-3');
     var content = document.getElementById('content');
 
-    $$.scroll.set(content, -100, function () {
-        $(tag3).removeClass('hide');
+    var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    $$.scroll.set(content, windowHeight-800, function () {
         $(tag1).addClass('hide');
+        $(tag3).removeClass('hide');
     }, $$.scroll.REFERENCE.TOP, $$.scroll.DIRECTION.DOWN);
-    $$.scroll.set(content, -10, function () {
-        $(tag1).addClass('hide');
-        $(tag3).removeClass('hide');
+
+    $$.scroll.set(content, 0, function () {
+        $(tag1).removeClass('hide');
+        $(tag3).addClass('hide');
     }, $$.scroll.REFERENCE.TOP, $$.scroll.DIRECTION.UP);
 
-    //$$.scroll.set(content2, 100, function (event) {
-    //    $(text).hide().fadeIn(400);
-    //    $$.scroll.clear(event.key);
-    //}, $$.scroll.REFERENCE.BOTTOM, $$.scroll.DIRECTION.DOWN);
+    $$.scroll.set(content, (windowHeight - 800)/2, function () {
+        $(tag2).toggleClass('green');
+    }, $$.scroll.REFERENCE.TOP);
 });
