@@ -28,19 +28,21 @@
 
             &.instruction-1 {
                 top: 100px;
-                border-top: 1px dashed #bbb;
+                border-top: 1px solid #ddd;
             }
 
             &.instruction-2 {
                 top: 700px;
                 margin-top: -51px;
-                border-bottom: 1px dashed #bbb;
+                border-bottom: 1px solid #ddd;
             }
         }
 
         .content {
-            border-bottom: 1px solid #eee;
-            width: 100%;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            margin:0 auto;
+            width: 120px;
             height: 800px;
             background-color: #fff;
             position: relative;
@@ -48,6 +50,7 @@
             left: 0;
             background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABEklEQVRoge2ZwQ6DIAyGgSz6AkuM953YxbfY42N26Gl3s2QvgEGzK4cJxs46un43mkr5Q/glVKkMANDmclL0fX/DfJ+rbzCT/wK8BQBA671vqBazpT7vHSiBpABr7VDX9ZNqMVvqn+JBbFnW2uEb8XEcUfN77xsAWMzX8SA+MLFyTFxr3VRVdd9r/iQA0DrnulXJC2B+ZGvq8z7EJVC8C/HegRKQu9DR8BYgLkQAbwHiQgQUL0Bj321yGGMu8zw/9qyRRB62dkZc6Gh4C5C7EAG8BYgLEcBbgLgQAcULSPYH4vf5OL6U/ymO6Q8457oQwnlzf+CThVH2B0IIV6WUmqbp9Z/9AXEhAngLkLsQAcULeANxPile0TMhiAAAAABJRU5ErkJggg==");
             background-repeat: repeat;
+            background-position:center center;
             z-index: 10;
         }
 
@@ -58,11 +61,10 @@
             width: 400px;
             height: 100px;
             margin-top: -51px;
-            margin-left: -200px;
-            background-color:#fff;
+            margin-left: -201px;
+            background-color:#eee;
             z-index: 30;
-            border-top:1px solid #eee;
-            border-bottom:1px solid #eee;
+            border:1px solid #fff;
 
             .tag {
                 display: block;
@@ -95,7 +97,7 @@
                 }
 
                 &.hide {
-                    background-color: #fff;
+                    background-color: #eee;
                     border: 1px solid #ccc;
                     color: #ccc;
                 }
