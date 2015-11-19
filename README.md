@@ -1,7 +1,7 @@
 # ScrollTask
 Monitor scrolling action and run pre-defined task when scroll to specific position.
 
-*Download: [ScrollTask v0.0.1](https://github.com/Rendxx/ScrollTask/releases/tag/0.0.1 "Download")*
+*Download: [ScrollTask v0.0.2](https://github.com/Rendxx/ScrollTask/releases/tag/0.0.2 "Download")*
 
 ## Install
 Download the package from bower
