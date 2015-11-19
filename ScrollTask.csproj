@@ -19,6 +19,8 @@
     <Content Include="js\ScrollTask.min.js" />
     <Content Include="src\js\ScrollTask.js" />
     <Content Include="test\jquery.js" />
+    <Content Include="test\test_header..html" />
+    <Content Include="test\test_header.js" />
     <Content Include="test\sample.html" />
     <Content Include="test\sample.js" />
   </ItemGroup>
@@ -33,6 +35,7 @@
     <Content Include="js\ScrollTask.min.js.map" />
     <Content Include="LICENSE" />
     <Content Include="README.md" />
+    <Content Include="test\test_header.less" />
     <None Include="test\sample.less" />
     <None Include="package.json" />
   </ItemGroup>

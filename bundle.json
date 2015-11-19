@@ -26,7 +26,8 @@
     "bower": {
     },
     "less": {
-      "#test#/sample": [ "#test#/sample.less" ]
+      "#test#/sample": [ "#test#/sample.less" ],
+      "#test#/test_header": [ "#test#/test_header.less" ]
     },
     "js": {
       "#dest#/ScrollTask": [ "#src#/ScrollTask.js" ]

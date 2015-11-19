@@ -1,18 +1,20 @@
 ﻿$(function () {
-    var header1 = document.getElementById('header-1');
-    var header2 = document.getElementById('header-2');
-    var content1 = document.getElementById('content-1');
-    var content2 = document.getElementById('content-2');
-    var text = document.getElementById('text');
-    $$.scroll.set(content1, 40, function () {
-        $(header2).show();
+    var tag1 = document.getElementById('tag-1');
+    var tag2 = document.getElementById('tag-2');
+    var tag3 = document.getElementById('tag-3');
+    var content = document.getElementById('content');
+
+    $$.scroll.set(content, -100, function () {
+        $(tag3).removeClass('hide');
+        $(tag1).addClass('hide');
     }, $$.scroll.REFERENCE.TOP, $$.scroll.DIRECTION.DOWN);
-    $$.scroll.set(content1, 40, function () {
-        $(header2).hide();
+    $$.scroll.set(content, -10, function () {
+        $(tag1).addClass('hide');
+        $(tag3).removeClass('hide');
     }, $$.scroll.REFERENCE.TOP, $$.scroll.DIRECTION.UP);
 
-    $$.scroll.set(content2, 100, function (event) {
-        $(text).hide().fadeIn(400);
-        $$.scroll.clear(event.key);
-    }, $$.scroll.REFERENCE.BOTTOM, $$.scroll.DIRECTION.DOWN);
+    //$$.scroll.set(content2, 100, function (event) {
+    //    $(text).hide().fadeIn(400);
+    //    $$.scroll.clear(event.key);
+    //}, $$.scroll.REFERENCE.BOTTOM, $$.scroll.DIRECTION.DOWN);
 });
